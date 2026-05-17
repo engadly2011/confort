@@ -1008,11 +1008,11 @@ button{cursor:pointer;font-family:'Cairo',sans-serif}
 
         <div class="fg">
           <label for="f-phone"><span class="req">*</span> رقم الهاتف</label>
-          <input type="tel" id="f-phone" name="phone"
-                 placeholder="01XXXXXXXXX"
-                 autocomplete="tel" inputmode="numeric" maxlength="11">
-          <div class="field-hint">سنتواصل معاك على الرقم ده لتأكيد الطلب</div>
-          <div class="field-err" id="e-phone">رقم الهاتف غلط &#8212; اكتب 11 رقم صح</div>
+          <input type="text" id="f-phone" name="phone"
+                 placeholder="مثال: 01012345678 أو +447853501734"
+                 autocomplete="tel" inputmode="text">
+          <div class="field-hint">ممكن تكتب الرقم بالعربي أو الانجليزي</div>
+          <div class="field-err" id="e-phone">من فضلك اكتب رقم الهاتف</div>
         </div>
 
         <div class="fg">
@@ -1038,8 +1038,9 @@ button{cursor:pointer;font-family:'Cairo',sans-serif}
         <div class="fg">
           <label for="f-addr"><span class="req">*</span> العنوان بالتفصيل</label>
           <textarea id="f-addr" name="address"
-                    placeholder="مثال: 12 شارع الجمهورية، الدور 3، شقة 8"></textarea>
-          <div class="field-err" id="e-addr">اكتب العنوان بالتفصيل</div>
+                    placeholder="مثال: 12 شارع الجمهورية، الدور 3، شقة 8"
+                    style="height:110px"></textarea>
+          <div class="field-err" id="e-addr">من فضلك اكتب العنوان</div>
         </div>
 
         <div class="order-summary">
@@ -1219,14 +1220,13 @@ document.getElementById('f-name').addEventListener('blur', function () {
   markField('f-name', 'e-name', this.value.trim().length < 3);
 });
 document.getElementById('f-phone').addEventListener('blur', function () {
-  var v = this.value.replace(/\D/g, '');
-  markField('f-phone', 'e-phone', !/^01[0125]\d{8}$/.test(v));
+  markField('f-phone', 'e-phone', this.value.trim().length < 5);
 });
 document.getElementById('f-gov').addEventListener('change', function () {
   markField('f-gov', 'e-gov', !this.value);
 });
 document.getElementById('f-addr').addEventListener('blur', function () {
-  markField('f-addr', 'e-addr', this.value.trim().length < 10);
+  markField('f-addr', 'e-addr', this.value.trim().length < 2);
 });
 
 /* Google Sheets endpoint */
@@ -1246,15 +1246,15 @@ document.getElementById('order-form').addEventListener('submit', function (e) {
   e.preventDefault();
 
   var name  = document.getElementById('f-name').value.trim();
-  var phone = document.getElementById('f-phone').value.replace(/\D/g, '');
+  var phone = document.getElementById('f-phone').value.trim();
   var gov   = document.getElementById('f-gov').value;
   var addr  = document.getElementById('f-addr').value.trim();
   var ok    = true;
 
   if (name.length < 3)                { markField('f-name',  'e-name',  true); ok = false; }
-  if (!/^01[0125]\d{8}$/.test(phone)) { markField('f-phone', 'e-phone', true); ok = false; }
-  if (!gov)                            { markField('f-gov',   'e-gov',   true); ok = false; }
-  if (addr.length < 10)               { markField('f-addr',  'e-addr',  true); ok = false; }
+  if (phone.length < 5)  { markField('f-phone', 'e-phone', true); ok = false; }
+  if (!gov)              { markField('f-gov',   'e-gov',   true); ok = false; }
+  if (addr.length < 2)   { markField('f-addr',  'e-addr',  true); ok = false; }
 
   if (!ok) {
     var bad = document.querySelector('.invalid');
