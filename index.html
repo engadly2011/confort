@@ -36,7 +36,7 @@ src="https://www.facebook.com/tr?id=256380783472116&ev=PageView&noscript=1"/></n
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Cairo',sans-serif;background:#fff;color:var(--navy);overflow-x:hidden;direction:rtl;-webkit-font-smoothing:antialiased}
+body{font-family:'Cairo',sans-serif;background:#fff;color:var(--navy);overflow-x:hidden;direction:rtl;-webkit-font-smoothing:antialiased;padding-bottom:42px}
 img{max-width:100%;display:block}
 button{cursor:pointer;font-family:'Cairo',sans-serif}
 
@@ -48,12 +48,12 @@ button{cursor:pointer;font-family:'Cairo',sans-serif}
 
 /* === STICKY BAR === */
 #sticky{
-  position:fixed;bottom:0;left:0;right:0;z-index:1000;
+  position:fixed;bottom:42px;left:0;right:0;z-index:1000;
   background:linear-gradient(135deg,var(--navy),var(--navy2));
   padding:10px 16px;
   display:flex;align-items:center;justify-content:space-between;gap:12px;
   box-shadow:0 -3px 20px rgba(0,0,0,.35);
-  transform:translateY(110%);
+  transform:translateY(calc(100% + 42px));
   transition:transform .45s cubic-bezier(.34,1.56,.64,1);
 }
 #sticky.show{transform:translateY(0)}
@@ -191,21 +191,21 @@ button{cursor:pointer;font-family:'Cairo',sans-serif}
 .wd{font-size:11px;color:var(--muted);transition:color .28s}
 
 /* === REVIEWS === */
-.reviews{background:var(--navy);padding:72px 0;text-align:center;overflow:hidden}
-.reviews-wrap{padding:0 20px}
-.rtrack-wrap{overflow:hidden;margin-top:36px}
-.rtrack{display:flex;gap:16px;animation:scrollr 32s linear infinite;width:max-content}
-.rtrack:hover{animation-play-state:paused}
-@keyframes scrollr{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.rv{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);border-radius:var(--rl);padding:22px;width:290px;flex-shrink:0;text-align:right;transition:background .3s}
-.rv:hover{background:rgba(255,255,255,.11)}
-.rh{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.rav{width:46px;height:46px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--blue),var(--sky));display:flex;align-items:center;justify-content:center;font-size:20px}
-.rname{font-weight:800;color:#fff;font-size:14px}
-.rloc{font-size:11px;color:rgba(255,255,255,.45)}
-.rv .stars{color:var(--gold);font-size:13px;margin-bottom:10px}
-.rtxt{font-size:13px;color:rgba(255,255,255,.78);line-height:1.7}
-.rugc{font-size:11px;color:rgba(255,255,255,.35);margin-top:10px}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* === OFFER === */
 .offer{background:linear-gradient(150deg,#080f22 0%,#0d1f3e 50%,#0a2045 100%);padding:72px 20px;text-align:center;position:relative;overflow:hidden}
@@ -347,6 +347,30 @@ button{cursor:pointer;font-family:'Cairo',sans-serif}
 .final-cta:hover{transform:translateY(-2px)}
 .final-small{color:rgba(255,255,255,.65);font-size:13px;margin-top:16px}
 
+/* === WHATSAPP FLOAT === */
+#wa-btn{
+  position:fixed;left:16px;bottom:120px;z-index:998;
+  background:#25d366;color:#fff;
+  width:56px;height:56px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.5);
+  font-size:28px;text-decoration:none;
+  transition:transform .25s,box-shadow .25s;
+  animation:wapulse 3s infinite;
+}
+#wa-btn:hover{transform:scale(1.12);box-shadow:0 6px 28px rgba(37,211,102,.7)}
+@keyframes wapulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.5)}50%{box-shadow:0 4px 30px rgba(37,211,102,.8)}}
+.wa-tooltip{
+  position:absolute;left:66px;top:50%;transform:translateY(-50%);
+  background:var(--navy);color:#fff;font-size:12px;font-weight:700;
+  padding:6px 12px;border-radius:8px;white-space:nowrap;
+  opacity:0;pointer-events:none;transition:opacity .2s;
+}
+#wa-btn:hover .wa-tooltip{opacity:1}
+
+/* === SECTION IMAGE === */
+.section-img{display:block;margin:0 auto}
+
 /* === RESPONSIVE === */
 @media(max-width:768px){
   .hero-wrap{grid-template-columns:1fr;padding:28px 16px 24px;gap:24px}
@@ -371,14 +395,206 @@ button{cursor:pointer;font-family:'Cairo',sans-serif}
   .trust-in{gap:14px}
   .form-card{padding:24px 18px}
   .success-box{padding:32px 24px}
-  body{padding-bottom:74px}
+  body{padding-bottom:120px}
 }
 @media(max-width:400px){
   .prob-grid,.ben-grid,.form-trust-row{grid-template-columns:1fr}
 }
+
+/* =============================================
+   REVIEWS STATIC GRID
+============================================= */
+.reviews-static{
+  background:linear-gradient(180deg,#0d1b3e 0%,#0f2347 100%);
+  padding:64px 20px;
+}
+.rs-head{
+  text-align:center;
+  max-width:700px;margin:0 auto 48px;
+}
+.rs-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(79,174,232,.15);
+  border:1px solid rgba(79,174,232,.3);
+  color:var(--sky);font-size:13px;font-weight:800;
+  padding:6px 18px;border-radius:50px;margin-bottom:16px;
+}
+.rs-title{
+  font-size:clamp(22px,4vw,36px);font-weight:900;
+  color:#fff;line-height:1.3;margin-bottom:14px;
+}
+.rs-rating-row{
+  display:flex;align-items:center;justify-content:center;
+  gap:10px;flex-wrap:wrap;
+}
+.rs-stars{color:var(--gold);font-size:20px;letter-spacing:2px}
+.rs-num{font-size:15px;font-weight:800;color:#fff}
+.rs-pipe{color:rgba(255,255,255,.3)}
+.rs-verified{font-size:13px;color:#4ade80;font-weight:700}
+
+/* Grid */
+.rs-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:18px;
+  max-width:1100px;margin:0 auto;
+}
+
+/* Card */
+.rc-card{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:18px;
+  padding:22px 20px;
+  transition:background .3s,transform .3s,box-shadow .3s;
+  display:flex;flex-direction:column;gap:14px;
+}
+.rc-card:hover{
+  background:rgba(255,255,255,.1);
+  transform:translateY(-4px);
+  box-shadow:0 12px 40px rgba(0,0,0,.3);
+  border-color:rgba(79,174,232,.3);
+}
+.rc-top{
+  display:flex;align-items:center;gap:12px;
+}
+.rc-avatar{
+  width:44px;height:44px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--blue),var(--sky));
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;
+}
+.rc-info{flex:1}
+.rc-name{font-weight:800;color:#fff;font-size:14px;margin-bottom:2px}
+.rc-loc{font-size:11px;color:rgba(255,255,255,.45)}
+.rc-stars{color:var(--gold);font-size:13px;flex-shrink:0;letter-spacing:1px}
+.rc-text{
+  font-size:14px;color:rgba(255,255,255,.8);
+  line-height:1.7;flex:1;
+}
+.rc-foot{
+  font-size:11px;color:rgba(255,255,255,.35);
+  font-weight:700;padding-top:10px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+/* =============================================
+   FIXED BOTTOM TICKER — always visible
+============================================= */
+#reviews-ticker{
+  position:fixed;bottom:0;left:0;right:0;z-index:997;
+  background:linear-gradient(90deg,#0a1630,#0d1f3e);
+  border-top:1px solid rgba(79,174,232,.25);
+  height:42px;overflow:hidden;
+}
+.tk-inner{
+  display:flex;align-items:center;height:100%;
+}
+.tk-label{
+  background:linear-gradient(135deg,var(--green),#14b857);
+  color:#fff;font-size:11px;font-weight:800;
+  padding:0 14px;height:100%;
+  display:flex;align-items:center;
+  white-space:nowrap;flex-shrink:0;gap:5px;
+  letter-spacing:.3px;
+}
+.tk-overflow{overflow:hidden;flex:1;height:100%}
+.tk-track{
+  display:flex;align-items:center;
+  height:100%;gap:20px;
+  width:max-content;
+  animation:tkscroll 45s linear infinite;
+}
+@keyframes tkscroll{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+.tk-item{
+  display:flex;align-items:center;gap:7px;
+  white-space:nowrap;flex-shrink:0;
+}
+.tk-stars{color:var(--gold);font-size:11px}
+.tk-name{font-weight:800;color:#fff;font-size:12px}
+.tk-quote{color:rgba(255,255,255,.75);font-size:12px}
+.tk-dot{
+  color:rgba(79,174,232,.4);font-size:8px;flex-shrink:0;
+}
+
 </style>
 </head>
 <body>
+
+<!-- WHATSAPP FLOAT BUTTON -->
+<a href="https://wa.me/447853501734?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%A8%D8%A7%D9%83%D9%8A%D8%AC%20%D8%A7%D9%84%D8%B1%D8%A7%D8%AD%D8%A9%20%D8%A7%D9%84%D8%B4%D8%A7%D9%85%D9%84%D8%A9"
+   id="wa-btn" target="_blank" rel="noopener" title="تواصل معنا على واتساب">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+  <span class="wa-tooltip">&#128222; +447853501734</span>
+</a>
+
+<!-- FIXED REVIEWS TICKER (always visible while scrolling) -->
+<div id="reviews-ticker">
+  <div class="tk-inner">
+    <div class="tk-label">&#11088; آراء العملاء</div>
+    <div class="tk-overflow">
+      <div class="tk-track">
+
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">أحمد م.</span><span class="tk-quote">ظهري اتحسن من أول يوم!</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">سارة خ.</span><span class="tk-quote">الألم اتقلل 90% بعد أسبوع</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">محمود ع.</span><span class="tk-quote">12 ساعة سواقة ومش حاسس بحاجة!</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">نورا إ.</span><span class="tk-quote">خامة طبية حقيقية ومضمونة</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">عمر ح.</span><span class="tk-quote">التنميل اختفى تماماً!</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">منى س.</span><span class="tk-quote">كطبيبة أنا سعيدة جداً بالمنتج</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">كريم س.</span><span class="tk-quote">استثمار حقيقي في صحتك</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">هاني ش.</span><span class="tk-quote">الألم من سنتين خف جداً</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">دينا م.</span><span class="tk-quote">من أحسن اللي اشتريته في حياتي</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">أيمن ر.</span><span class="tk-quote">السفرات الطويلة بقت سهلة!</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">رانيا ح.</span><span class="tk-quote">جوزي قالي أحسن هدية اتهداها</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">ياسر ف.</span><span class="tk-quote">فرق حقيقي من أول أسبوع!</span></div>
+        <span class="tk-dot">&#9679;</span>
+
+        <!-- duplicate for seamless loop -->
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">أحمد م.</span><span class="tk-quote">ظهري اتحسن من أول يوم!</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">سارة خ.</span><span class="tk-quote">الألم اتقلل 90% بعد أسبوع</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">محمود ع.</span><span class="tk-quote">12 ساعة سواقة ومش حاسس بحاجة!</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">نورا إ.</span><span class="tk-quote">خامة طبية حقيقية ومضمونة</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">عمر ح.</span><span class="tk-quote">التنميل اختفى تماماً!</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">منى س.</span><span class="tk-quote">كطبيبة أنا سعيدة جداً بالمنتج</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">كريم س.</span><span class="tk-quote">استثمار حقيقي في صحتك</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">هاني ش.</span><span class="tk-quote">الألم من سنتين خف جداً</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">دينا م.</span><span class="tk-quote">من أحسن اللي اشتريته في حياتي</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">أيمن ر.</span><span class="tk-quote">السفرات الطويلة بقت سهلة!</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">رانيا ح.</span><span class="tk-quote">جوزي قالي أحسن هدية اتهداها</span></div>
+        <span class="tk-dot">&#9679;</span>
+        <div class="tk-item"><span class="tk-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="tk-name">ياسر ف.</span><span class="tk-quote">فرق حقيقي من أول أسبوع!</span></div>
+        <span class="tk-dot">&#9679;</span>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- SUCCESS OVERLAY -->
 <div id="success-overlay">
@@ -444,16 +660,12 @@ button{cursor:pointer;font-family:'Cairo',sans-serif}
 
 <!-- 2. PROBLEM -->
 <section class="prob">
-  <div style="max-width:900px;margin:0 auto">
-    <div class="sec-label fu">&#9888;&#65039; هل تعاني من؟</div>
-    <h2 class="sec-title fu">مشاكل بتدمر راحتك كل يوم</h2>
-    <p class="sec-sub fu">لو حسيت بواحدة من دول، أنت محتاج الباكيج ده</p>
-    <div class="prob-grid">
-      <div class="prob-card fu"><span class="prob-icon">&#128308;</span><div class="prob-title">ألم أسفل الظهر</div><div class="prob-desc">الجلوس الطويل بيضغط على فقراتك ويسبب ألم مزمن يمنعك من التركيز</div><span class="prob-pill">&#129657; يعاني منه 7 من 10</span></div>
-      <div class="prob-card fu"><span class="prob-icon">&#9889;</span><div class="prob-title">تنميل العصعص والساقين</div><div class="prob-desc">ضغط الكرسي العادي بيقطع الدورة الدموية ويسبب خدر مؤلم</div><span class="prob-pill">&#128543; بعد 30 دقيقة جلوس</span></div>
-      <div class="prob-card fu"><span class="prob-icon">&#128663;</span><div class="prob-title">تعب القيادة الطويلة</div><div class="prob-desc">ساعات في السيارة بترهق ظهرك وبتوصل بيتك منهك</div><span class="prob-pill">&#128661; مشكلة كل السواقين</span></div>
-      <div class="prob-card fu"><span class="prob-icon">&#128545;</span><div class="prob-title">قفشة الرقبة والكتفين</div><div class="prob-desc">الجلوس الخاطئ بيعمل توتر عضلي في الرقبة والكتف طول اليوم</div><span class="prob-pill">&#128162; سبب 40% من الصداع</span></div>
-    </div>
+  <div style="max-width:1000px;margin:0 auto;text-align:center">
+    <img src="images/pain-problems.webp"
+         alt="هل تعاني من هذه المشاكل يومياً"
+         class="fu section-img"
+         loading="lazy"
+         style="width:100%;border-radius:20px;box-shadow:0 12px 48px rgba(13,27,62,.14)">
   </div>
 </section>
 
@@ -506,40 +718,16 @@ button{cursor:pointer;font-family:'Cairo',sans-serif}
 </section>
 
 <!-- 4. BEFORE/AFTER -->
-<section class="ba">
-  <div style="max-width:900px;margin:0 auto">
-    <div class="sec-label fu">&#128260; الفرق قبل وبعد</div>
-    <h2 class="sec-title fu">حياتك قبل وبعد الباكيج</h2>
-    <p class="sec-sub fu">الفرق بيحسسك بيه من أول استخدام</p>
-    <div class="ba-grid">
-      <div class="bac before fu">
-        <div class="bal">&#10060; قبل الباكيج</div>
-        <div class="bav">
-          <div class="bae">&#128553;</div>
-          <div class="bat">جلوس مؤلم ومنهك</div>
-          <div class="baps">
-            <div class="bap">&#10060; ظهر مكسور من الكرسي</div>
-            <div class="bap">&#10060; تنميل وخدر مستمر</div>
-            <div class="bap">&#10060; تعب وصداع بعد ساعة</div>
-            <div class="bap">&#10060; إنتاجية منخفضة</div>
-          </div>
-        </div>
-      </div>
-      <div class="bac after fu">
-        <div class="bal">&#9989; بعد الباكيج</div>
-        <div class="bav">
-          <div class="bae">&#128522;</div>
-          <div class="bat">جلوس صحي مريح طوال اليوم</div>
-          <div class="baps">
-            <div class="bap">&#9989; ظهر مدعوم ومرتاح</div>
-            <div class="bap">&#9989; لا تنميل ولا خدر</div>
-            <div class="bap">&#9989; نشاط وتركيز أعلى</div>
-            <div class="bap">&#9989; راحة من أول استخدام</div>
-          </div>
-        </div>
-      </div>
+<section class="ba" style="background:var(--off);padding:56px 20px">
+  <div style="max-width:1000px;margin:0 auto;text-align:center">
+    <img src="images/before-after.webp"
+         alt="الفرق واضح من أول استخدام"
+         class="fu section-img"
+         loading="lazy"
+         style="width:100%;border-radius:20px;box-shadow:0 12px 48px rgba(13,27,62,.14)">
+    <div class="fu" style="margin-top:28px">
+      <button class="hero-cta" style="margin:0 auto" onclick="addToCartAndScroll()">&#128722; اطلب الباكيج الآن &#8212; 1399 ج.م</button>
     </div>
-    <img src="images/bundle-info.webp" alt="تفاصيل الباكيج" class="bundle-img fu" loading="lazy">
   </div>
 </section>
 
@@ -574,28 +762,176 @@ button{cursor:pointer;font-family:'Cairo',sans-serif}
 </section>
 
 <!-- 7. REVIEWS -->
-<section class="reviews">
-  <div class="reviews-wrap">
-    <div class="sec-label fu" style="background:rgba(79,174,232,.15);color:var(--sky);border:1px solid rgba(79,174,232,.2)">&#11088; آراء عملاء حقيقيين</div>
-    <h2 class="sec-title fu" style="color:#fff;margin-top:10px">أكثر من 3500 عميل جربوه وبيوصوا بيه</h2>
-    <p class="sec-sub fu" style="color:rgba(255,255,255,.55)">تقييم 4.8 من 5 — كلهم دفعوا بعد المعاينة</p>
-  </div>
-  <div class="rtrack-wrap">
-    <div class="rtrack">
-      <div class="rv"><div class="rh"><div class="rav">&#128104;</div><div><div class="rname">أحمد محمد</div><div class="rloc">&#128205; القاهرة</div></div></div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rtxt">والله كنت شايف الموضوع مبالغة بس جربته وفارق فرق كبير جداً. من أول يوم حسيت إن ظهري مرتاح. منتج رهيب فعلاً</div><div class="rugc">&#10003; تقييم موثق | الباكيج الكامل</div></div>
-      <div class="rv"><div class="rh"><div class="rav">&#128105;</div><div><div class="rname">سارة خالد</div><div class="rloc">&#128205; الإسكندرية</div></div></div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rtxt">بشتغل من البيت 8 ساعات يومياً وكنت بتألم من ظهري كل يوم. دلوقتي الألم اتقلل 90%! الجودة أحسن من توقعاتي</div><div class="rugc">&#10003; تقييم موثق | اشترت: مرتين</div></div>
-      <div class="rv"><div class="rh"><div class="rav">&#128104;</div><div><div class="rname">محمود عبدالله</div><div class="rloc">&#128205; الجيزة</div></div></div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rtxt">شغّال أوبر وكنت مستحملش بعد 4 ساعات قيادة. دلوقتي بقضي 12 ساعة في السيارة ومش حاسس بحاجة. الحمد لله</div><div class="rugc">&#10003; تقييم موثق | سائق أوبر</div></div>
-      <div class="rv"><div class="rh"><div class="rav">&#128105;</div><div><div class="rname">نورا إبراهيم</div><div class="rloc">&#128205; المنصورة</div></div></div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rtxt">الخامة فعلاً طبية وممتازة. والأهم إني دفعت بعد ما استلمت وتأكدت إن المنتج تمام. ده خلاني أثق فيه</div><div class="rugc">&#10003; تقييم موثق | موظفة</div></div>
-      <div class="rv"><div class="rh"><div class="rav">&#128104;</div><div><div class="rname">عمر حسن</div><div class="rloc">&#128205; طنطا</div></div></div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rtxt">مبرمج بقعد 10-12 ساعة كل يوم. التنميل اللي كنت عايشه اختفى تماماً! يستاهل كل قرش منه وزيادة</div><div class="rugc">&#10003; تقييم موثق | مبرمج</div></div>
-      <div class="rv"><div class="rh"><div class="rav">&#128105;</div><div><div class="rname">ريم أحمد</div><div class="rloc">&#128205; الزقازيق</div></div></div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rtxt">اشتريته لأمي المحاسبة اللي بتقعد كتير. قالتلي إنه أحسن هدية في حياتها. هجيب واحد تاني لنفسي</div><div class="rugc">&#10003; تقييم موثق | هدية</div></div>
-      <!-- duplicates for loop -->
-      <div class="rv"><div class="rh"><div class="rav">&#128104;</div><div><div class="rname">أحمد محمد</div><div class="rloc">&#128205; القاهرة</div></div></div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rtxt">والله كنت شايف الموضوع مبالغة بس جربته وفارق فرق كبير جداً. من أول يوم حسيت إن ظهري مرتاح. منتج رهيب فعلاً</div><div class="rugc">&#10003; تقييم موثق | الباكيج الكامل</div></div>
-      <div class="rv"><div class="rh"><div class="rav">&#128105;</div><div><div class="rname">سارة خالد</div><div class="rloc">&#128205; الإسكندرية</div></div></div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rtxt">بشتغل من البيت 8 ساعات يومياً وكنت بتألم من ظهري كل يوم. دلوقتي الألم اتقلل 90%! الجودة أحسن من توقعاتي</div><div class="rugc">&#10003; تقييم موثق | اشترت: مرتين</div></div>
-      <div class="rv"><div class="rh"><div class="rav">&#128104;</div><div><div class="rname">محمود عبدالله</div><div class="rloc">&#128205; الجيزة</div></div></div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rtxt">شغّال أوبر وكنت مستحملش بعد 4 ساعات قيادة. دلوقتي بقضي 12 ساعة في السيارة ومش حاسس بحاجة.</div><div class="rugc">&#10003; تقييم موثق | سائق أوبر</div></div>
-      <div class="rv"><div class="rh"><div class="rav">&#128105;</div><div><div class="rname">نورا إبراهيم</div><div class="rloc">&#128205; المنصورة</div></div></div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rtxt">الخامة فعلاً طبية وممتازة. والأهم إني دفعت بعد ما استلمت وتأكدت إن المنتج تمام. ده خلاني أثق فيه</div><div class="rugc">&#10003; تقييم موثق | موظفة</div></div>
-      <div class="rv"><div class="rh"><div class="rav">&#128104;</div><div><div class="rname">عمر حسن</div><div class="rloc">&#128205; طنطا</div></div></div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rtxt">مبرمج بقعد 10-12 ساعة كل يوم. التنميل اللي كنت عايشه اختفى تماماً! يستاهل كل قرش منه وزيادة</div><div class="rugc">&#10003; تقييم موثق | مبرمج</div></div>
-      <div class="rv"><div class="rh"><div class="rav">&#128105;</div><div><div class="rname">ريم أحمد</div><div class="rloc">&#128205; الزقازيق</div></div></div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rtxt">اشتريته لأمي المحاسبة اللي بتقعد كتير. قالتلي إنه أحسن هدية في حياتها. هجيب واحد تاني لنفسي</div><div class="rugc">&#10003; تقييم موثق | هدية</div></div>
+<section class="reviews-static">
+  <div class="rs-head">
+    <div class="rs-badge">&#11088; آراء عملاء حقيقيين</div>
+    <h2 class="rs-title">أكثر من 3500 عميل جربوه وبيوصوا بيه</h2>
+    <div class="rs-rating-row">
+      <span class="rs-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="rs-num">4.8 / 5</span>
+      <span class="rs-pipe">|</span>
+      <span class="rs-verified">&#10003; كلهم دفعوا بعد المعاينة</span>
     </div>
+  </div>
+
+  <div class="rs-grid">
+
+    <div class="rc-card">
+      <div class="rc-top">
+        <div class="rc-avatar">&#128104;</div>
+        <div class="rc-info">
+          <div class="rc-name">أحمد محمد</div>
+          <div class="rc-loc">&#128205; القاهرة &bull; موظف</div>
+        </div>
+        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <p class="rc-text">والله كنت شايف الموضوع مبالغة بس جربته وفارق فرق كبير جداً. من أول يوم حسيت إن ظهري مرتاح. منتج رهيب فعلاً!</p>
+      <div class="rc-foot">&#10003; تقييم موثق &nbsp;&bull;&nbsp; الباكيج الكامل</div>
+    </div>
+
+    <div class="rc-card">
+      <div class="rc-top">
+        <div class="rc-avatar">&#128105;</div>
+        <div class="rc-info">
+          <div class="rc-name">سارة خالد</div>
+          <div class="rc-loc">&#128205; الإسكندرية &bull; تعمل من البيت</div>
+        </div>
+        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <p class="rc-text">بشتغل 8 ساعات يومياً وكنت بتألم من ظهري كل يوم. دلوقتي الألم اتقلل 90%! الجودة أحسن من توقعاتي بكتير.</p>
+      <div class="rc-foot">&#10003; تقييم موثق &nbsp;&bull;&nbsp; اشترت مرتين</div>
+    </div>
+
+    <div class="rc-card">
+      <div class="rc-top">
+        <div class="rc-avatar">&#128104;</div>
+        <div class="rc-info">
+          <div class="rc-name">محمود عبدالله</div>
+          <div class="rc-loc">&#128205; الجيزة &bull; سائق أوبر</div>
+        </div>
+        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <p class="rc-text">كنت مستحملش بعد 4 ساعات قيادة. دلوقتي بقضي 12 ساعة في السيارة ومش حاسس بحاجة. الحمد لله!</p>
+      <div class="rc-foot">&#10003; تقييم موثق &nbsp;&bull;&nbsp; سائق أوبر</div>
+    </div>
+
+    <div class="rc-card">
+      <div class="rc-top">
+        <div class="rc-avatar">&#128105;</div>
+        <div class="rc-info">
+          <div class="rc-name">نورا إبراهيم</div>
+          <div class="rc-loc">&#128205; المنصورة &bull; موظفة</div>
+        </div>
+        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <p class="rc-text">الخامة فعلاً طبية وممتازة. والأهم إني دفعت بعد ما استلمت وتأكدت. ده خلاني أثق فيه من الأول تماماً.</p>
+      <div class="rc-foot">&#10003; تقييم موثق &nbsp;&bull;&nbsp; موظفة</div>
+    </div>
+
+    <div class="rc-card">
+      <div class="rc-top">
+        <div class="rc-avatar">&#128104;</div>
+        <div class="rc-info">
+          <div class="rc-name">عمر حسن</div>
+          <div class="rc-loc">&#128205; طنطا &bull; مبرمج</div>
+        </div>
+        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <p class="rc-text">بقعد 10-12 ساعة قدام الكمبيوتر. التنميل اللي كنت عايشه اختفى تماماً! يستاهل كل قرش منه وزيادة.</p>
+      <div class="rc-foot">&#10003; تقييم موثق &nbsp;&bull;&nbsp; مبرمج</div>
+    </div>
+
+    <div class="rc-card">
+      <div class="rc-top">
+        <div class="rc-avatar">&#128105;</div>
+        <div class="rc-info">
+          <div class="rc-name">منى سعيد</div>
+          <div class="rc-loc">&#128205; أسيوط &bull; طبيبة</div>
+        </div>
+        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <p class="rc-text">كطبيبة أنا سعيدة جداً بالمنتج. الوسادة دي غيرت حياتي تماماً. ظهري بقى مرتاح وبقدر أركز أكتر مع مرضايا.</p>
+      <div class="rc-foot">&#10003; تقييم موثق &nbsp;&bull;&nbsp; طبيبة</div>
+    </div>
+
+    <div class="rc-card">
+      <div class="rc-top">
+        <div class="rc-avatar">&#128104;</div>
+        <div class="rc-info">
+          <div class="rc-name">كريم السيد</div>
+          <div class="rc-loc">&#128205; الإسماعيلية &bull; محاسب</div>
+        </div>
+        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <p class="rc-text">كنت شايفه غالي في الأول بس بعد ما جربته اتأكدت إنه رخيص جداً مقارنة بالراحة اللي بيديها. استثمار حقيقي!</p>
+      <div class="rc-foot">&#10003; تقييم موثق &nbsp;&bull;&nbsp; محاسب</div>
+    </div>
+
+    <div class="rc-card">
+      <div class="rc-top">
+        <div class="rc-avatar">&#128104;</div>
+        <div class="rc-info">
+          <div class="rc-name">هاني الشافعي</div>
+          <div class="rc-loc">&#128205; بورسعيد &bull; معلم</div>
+        </div>
+        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <p class="rc-text">من أول ما جربت الباكيج ده الألم اللي كان معايا من سنتين خف جداً. أنصح بيه كل الناس اللي بتقعد كتير.</p>
+      <div class="rc-foot">&#10003; تقييم موثق &nbsp;&bull;&nbsp; معلم</div>
+    </div>
+
+    <div class="rc-card">
+      <div class="rc-top">
+        <div class="rc-avatar">&#128105;</div>
+        <div class="rc-info">
+          <div class="rc-name">دينا مصطفى</div>
+          <div class="rc-loc">&#128205; الغربية &bull; محررة محتوى</div>
+        </div>
+        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <p class="rc-text">بشتغل 10 ساعات يومياً. الباكيج ده من أحسن اللي اشتريته. التنميل اختفى ومش بتعبش بعد الشغل.</p>
+      <div class="rc-foot">&#10003; تقييم موثق &nbsp;&bull;&nbsp; محررة محتوى</div>
+    </div>
+
+    <div class="rc-card">
+      <div class="rc-top">
+        <div class="rc-avatar">&#128104;</div>
+        <div class="rc-info">
+          <div class="rc-name">أيمن رضا</div>
+          <div class="rc-loc">&#128205; الفيوم &bull; سواق نقل</div>
+        </div>
+        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <p class="rc-text">سواق نقل ثقيل وكنت بتعب ظهري كتير. دلوقتي السفرات الطويلة بقت أسهل بكتير. شكراً جزيلاً!</p>
+      <div class="rc-foot">&#10003; تقييم موثق &nbsp;&bull;&nbsp; سواق نقل</div>
+    </div>
+
+    <div class="rc-card">
+      <div class="rc-top">
+        <div class="rc-avatar">&#128105;</div>
+        <div class="rc-info">
+          <div class="rc-name">رانيا حسام</div>
+          <div class="rc-loc">&#128205; الشرقية &bull; هدية لجوز</div>
+        </div>
+        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <p class="rc-text">اشتريته لجوزي المهندس اللي بيقعد كتير. قالي إنه أحسن هدية اتهداها وإن ظهره بقى أحسن بكتير.</p>
+      <div class="rc-foot">&#10003; تقييم موثق &nbsp;&bull;&nbsp; هدية لجوز</div>
+    </div>
+
+    <div class="rc-card">
+      <div class="rc-top">
+        <div class="rc-avatar">&#128104;</div>
+        <div class="rc-info">
+          <div class="rc-name">ياسر فريد</div>
+          <div class="rc-loc">&#128205; السويس &bull; مهندس</div>
+        </div>
+        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <p class="rc-text">جربت منتجات كتير قبل كده ومحدش نفع. الباكيج ده هو الأول اللي حسيت بيه فرق حقيقي من أول أسبوع.</p>
+      <div class="rc-foot">&#10003; تقييم موثق &nbsp;&bull;&nbsp; مهندس</div>
+    </div>
+
   </div>
 </section>
 
@@ -782,7 +1118,7 @@ window.addEventListener('scroll', function () {
   stickyEl.classList.toggle('show', window.scrollY > 500);
 }, { passive: true });
 
-/* Scroll animations */
+/* Scroll animations - skip fixed/ticker elements */
 var animObs = new IntersectionObserver(function (entries) {
   entries.forEach(function (e, i) {
     if (e.isIntersecting) {
@@ -791,7 +1127,15 @@ var animObs = new IntersectionObserver(function (entries) {
     }
   });
 }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-document.querySelectorAll('.fu, .fd').forEach(function (el) { animObs.observe(el); });
+document.querySelectorAll('.fu, .fd').forEach(function (el) {
+  /* Never animate fixed elements or children of fixed elements */
+  var isFixed = el.closest('#reviews-ticker') || el.closest('#sticky') || el.closest('#wa-btn');
+  if (isFixed) {
+    el.classList.add('in'); /* force visible immediately */
+  } else {
+    animObs.observe(el);
+  }
+});
 
 /* AddToCart pixel + scroll to form */
 var addedToCart = false;
